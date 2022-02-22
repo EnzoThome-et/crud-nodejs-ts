@@ -1,3 +1,3 @@
 export default interface Token {
-  token: string
+  token: string 
 }

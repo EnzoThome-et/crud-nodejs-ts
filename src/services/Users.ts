@@ -1,9 +1,10 @@
-import { User } from '../helpers/UserInterface';
-import * as UserModel from '../models/User';
+import Token from '../interfaces/TokenInterface';
+import { User } from '../interfaces/UserInterface';
+import UserModel = require('../models/UserModel');
 
-const createUser = async (user: User) => {
+export const createUser = async (user: User): Promise<Token> => {
   const create = await UserModel.create(user);
   return create;
 };
 
-export { createUser };
+export default createUser;
