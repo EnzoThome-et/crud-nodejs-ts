@@ -75,10 +75,3 @@ export const validatePassword = (req: Request, res: Response, next: NextFunction
       
   next();
 };
-
-// const validateUser = (req: Request, res: Response, next: NextFunction): void => {
-//   validateUserName(req, res, next);
-//   validateClass(req, res, next);
-//   validateLevel(req, res, next);
-//   validatePassword(req, res, next);
-// };
