@@ -13,7 +13,9 @@ const create = async (req: Request, res: Response) => {
     );
     return res.status(201).json(createUser);
   } catch (error) {
-    return res.status(500).json({ message: error });
+    if (error instanceof Error) {
+      return res.status(500).json({ message: error.message });
+    }
   }
 };
 
