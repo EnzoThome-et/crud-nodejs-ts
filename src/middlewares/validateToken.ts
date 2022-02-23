@@ -4,19 +4,21 @@ import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
+const auth = {
+  secret: String(process.env.JWT_SECRET),
+};
+
 const validateToken = async (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
+  if (!authorization) return res.status(401).json({ error: 'Token not found' });
   try {
-    if (!authorization) return res.status(401).json({ error: 'Token not found' });
-
-    const secret = process.env.JWT_SECRET || 'secret';
-  
-    jwt.verify(authorization, secret, (err) => {
-      if (err) return res.status(401).json({ error: 'Invalid token' });
-    });
+    const verify = jwt.verify(authorization, auth.secret);
+    console.log(verify);
     
     next();
   } catch (error) {
+    console.log(error);
+    
     return res.status(401).json({ error: 'Invalid token' });
   }
 };
