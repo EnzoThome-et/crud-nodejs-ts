@@ -1,16 +1,19 @@
-import { sign, SignOptions, Secret } from 'jsonwebtoken';
+import { sign, SignOptions } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const auth = {
+  secret: String(process.env.JWT_SECRET),
+};
 
 const createToken = (username: string): string => {
   const jwtConfig: SignOptions = {
     expiresIn: '1d',
     algorithm: 'HS256',
   };  
-  const secret: Secret = process.env.JWT_SECRET || '123';
    
-  const token = sign({ data: username }, secret, jwtConfig);
+  const token = sign({ data: username }, auth.secret, jwtConfig);
 
   return token;
 };
