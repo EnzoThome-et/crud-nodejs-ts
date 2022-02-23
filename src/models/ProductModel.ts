@@ -1,7 +1,7 @@
 import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
 
-const create = async (name: string, amount: string) => {
+export const create = async (name: string, amount: string) => {
   const query = 'INSERT INTO Trybesmith.Products (name, amount) VALUES (?,?)';
   const [result] = await connection.execute<ResultSetHeader>(query, [name, amount]);
   
@@ -14,4 +14,9 @@ const create = async (name: string, amount: string) => {
   };
 };
 
-export default create;
+export const getAll = async () => {
+  const query = 'SELECT * FROM Trybesmith.Products';
+  const [result] = await connection.execute<ResultSetHeader>(query);
+
+  return result;
+};

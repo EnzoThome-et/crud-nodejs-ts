@@ -1,8 +1,11 @@
-import create from '../models/ProductModel';
+import { create, getAll as modelGetAll } from '../models/ProductModel';
 
-const serviceCreateProduct = async (name: string, amount: string) => {
+export const serviceCreateProduct = async (name: string, amount: string) => {
   const createProduct = await create(name, amount);
   return createProduct;  
 };
 
-export default serviceCreateProduct;
+export const getAll = async () => {
+  const getAllProducts = await modelGetAll();
+  return getAllProducts;  
+};

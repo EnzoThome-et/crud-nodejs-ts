@@ -1,6 +1,6 @@
 import express from 'express';
 import Login from './controllers/Login';
-import createProduct from './controllers/Products';
+import { createProduct, getAll } from './controllers/Products';
 
 import UserController from './controllers/Users';
 import { validateAmount, validateName } from './middlewares/validateAmount';
@@ -25,5 +25,7 @@ app.post(
 app.post('/login', validateLogin, Login.login);
 
 app.post('/products', validateToken, validateName, validateAmount, createProduct);
+
+app.get('/products', validateToken, getAll);
 
 export default app;
