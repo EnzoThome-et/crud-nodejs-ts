@@ -6,18 +6,19 @@ dotenv.config();
 
 const validateToken = async (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
-  
-  if (!authorization) return res.status(401).json({ error: 'Token not found' });
-  
-  // if (authorization === null) return res.status(401).json({ error: 'Token not found' });
+  try {
+    if (!authorization) return res.status(401).json({ error: 'Token not found' });
 
-  const secret = process.env.JWT_SECRET || 'secret';
-
-  jwt.verify(authorization, secret, (err) => {
-    if (err) return res.status(401).json({ error: 'Invalid token' });
-  });
+    const secret = process.env.JWT_SECRET || 'secret';
   
-  next();
+    jwt.verify(authorization, secret, (err) => {
+      if (err) return res.status(401).json({ error: 'Invalid token' });
+    });
+    
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
 };
 
 export default validateToken;
