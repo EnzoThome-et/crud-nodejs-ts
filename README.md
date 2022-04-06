@@ -1,4 +1,3 @@
-
 <h1 align="center">TrybeSmith</h1>
 
 ### It is a web application that peforms some CRUD operations of medieval items, using Typescript.
