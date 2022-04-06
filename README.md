@@ -61,9 +61,6 @@ $ git clone <https://github.com/EnzoThome-et/crud-nodejs-ts.git>
 # Go to the project folder
 $ cd crud-nodejs-ts
 
-# Vá para a pasta server
-$ cd server
-
 # Install the dependencies
 $ npm install
 
